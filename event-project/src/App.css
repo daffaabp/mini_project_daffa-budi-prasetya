@@ -1,8 +1,13 @@
 #root {
-  max-width: 1280px;
+  max-width: auto;
   margin: 0;
   padding: 0;
   text-align: center;
+  height: 100%;
+}
+
+.container-main {
+  max-width: auto;
   height: 100%;
 }
 
