@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 // import RegisterPage from "./pages/RegisterPage";
 import Layout from "./components/layout/Layout";
 import Dashboard from "./pages/PrivatePages/Dashboard";
+import AddEventPage from "./pages/PrivatePages/AddEventPage";
 function App() {
   return (
     // <Router>
@@ -29,8 +30,8 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />
-          {/* <Route path="/add-event" element={<AddEventPage />} />
-          <Route path="/list-event" element={<ListEventPage />} />
+          <Route path="/add-event" element={<AddEventPage />} />
+          {/* <Route path="/list-event" element={<ListEventPage />} />
           <Route path="/like-event" element={<LikeEventPage />} /> */}
         </Routes>
       </Layout>
