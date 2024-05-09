@@ -2,13 +2,14 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-white dark:bg-gray-900">
-      <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-        <div className="md:flex md:justify-between">{/* Konten Footer */}</div>
-        <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-        <div className="sm:flex sm:items-center sm:justify-between">
-          {/* Konten Footer (bagian bawah) */}
-        </div>
+    <footer className="footer footer-center w-full p-2 bg-gray-300 text-gray-800 text-sm">
+      <div className="text-center">
+        <p>
+          © 2022 -{" "}
+          <a className="font-semibold" href="mailto:m.sohanemon@gmail.com">
+            SohanEmon
+          </a>
+        </p>
       </div>
     </footer>
   );

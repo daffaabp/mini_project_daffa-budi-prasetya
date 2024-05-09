@@ -6,7 +6,6 @@ import LoginPageFix from "./pages/LoginPageFix";
 import RegisterPage from "./pages/RegisterPage";
 import Layout from "./components/layout/Layout";
 import Dashboard from "./pages/PrivatePages/Dashboard";
-
 function App() {
   return (
     // <Router>
@@ -16,13 +15,24 @@ function App() {
     //   </Routes>
     // </Router>
 
+    // <Router>
+    //   <Layout>
+    //     <Routes>
+    //       <Route path="/" element={<LoginPageFix />} />
+    //       <Route path="/register" element={<RegisterPage />} />
+    //       <Route path="/dashboard" element={<Dashboard />} />
+    //     </Routes>
+    //   </Layout>
+    // </Router>
+
     <Router>
       <Layout>
-        <Routes>
-          <Route path="/" element={<LoginPageFix />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Routes>
+        {/* <Routes>
+          <Route path="/" element={<DashboardPage />} />
+          <Route path="/add-event" element={<AddEventPage />} />
+          <Route path="/list-event" element={<ListEventPage />} />
+          <Route path="/like-event" element={<LikeEventPage />} />
+        </Routes> */}
       </Layout>
     </Router>
   );
