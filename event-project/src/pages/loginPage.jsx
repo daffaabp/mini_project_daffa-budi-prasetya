@@ -23,8 +23,9 @@ function Login() {
     }
   });
   return (
-    <div className="bg-gray-300 min-h-screen flex items-center justify-center">
-      <header className="w-full max-w-md p-4bg-white rounded-lg shadow-lg">
+    <div className="bg-gradient-to-br from-indigo-500 to-purple-600 min-h-screen flex items-center justify-center">
+      <header className="w-full sm:max-w-md bg-white p-4 rounded-lg shadow-lg">
+        <h2 className="text-2xl font-semibold mb-4">Login Event Project</h2>
         <Auth
           supabaseClient={supabase}
           appearance={{ theme: ThemeSupa }}
