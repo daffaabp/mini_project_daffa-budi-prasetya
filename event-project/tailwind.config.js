@@ -8,5 +8,8 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [require("flowbite/plugin")],
+  plugins: [require("flowbite/plugin"), require("daisyui")],
+  daisyui: {
+    themes: ["light", "dark", "cupcake"],
+  },
 };

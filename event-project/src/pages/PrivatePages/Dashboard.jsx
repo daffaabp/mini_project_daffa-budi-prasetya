@@ -85,7 +85,6 @@ import moment from "moment";
 import { supabase } from "../../createClient";
 import ModalDetailEvent from "../../components/modals/ModalDetailEvent";
 
-
 const localizer = momentLocalizer(moment);
 
 const Dashboard = () => {
