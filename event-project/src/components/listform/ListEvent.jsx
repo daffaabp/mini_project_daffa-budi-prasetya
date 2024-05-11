@@ -14,13 +14,13 @@ import {
 } from "@mui/material";
 import { Edit, Delete, Favorite } from "@mui/icons-material";
 import useEventList from "../../hooks/useEventList";
+import Swal from "sweetalert2";
 
 const ListEvent = () => {
   const [page, setPage] = useState(0); // State untuk mengatur halaman
   const [rowsPerPage, setRowsPerPage] = useState(5); // state untuk mengatur jumlah baris per halaman
-  const [filterValue, setFilterValue] = useState(""); // state untuk nilai filter
   const [searchQuery, setSearchQuery] = useState(""); // state untuk nilai pencarian
-  const { eventList, handleLikeClick } = useEventList(); // mengambil daftar event dari custom hooks
+  const { eventList, handleLikeClick, handleDeleteEvent } = useEventList(); // mengambil daftar event dari custom hooks
 
   // fungsi untuk mengubah halaman saat tombol pagination di klik
   const handleChangePage = (event, newPage) => {
@@ -33,10 +33,6 @@ const ListEvent = () => {
     setPage(0);
   };
 
-   // fungsi untuk mengubah nilai filter saat dropdown filter diubah
-  const handleFilterChange = (event) => {
-    setFilterValue(event.target.value);
-  };
 
   // fungsi untuk mengubah nilai pencarian saat nilai input pencarian diubah
   const handleSearchChange = (event) => {
@@ -55,17 +51,26 @@ const ListEvent = () => {
     );
   });
 
-  // filter daftar acara berdasarkan kriteria filter
-  const sortedList = filteredList.filter((event) => {
-   // jika tidak ada filter yang dipilih, tampilkan semua acara
-    if (!filterValue) return true;
-    // jika filter yang dipilih adalah 'liked', tampilkan acara yang disukai
-    if (filterValue === "liked") {
-      return event.like === true;
-    }
-    // Tampilkan semua acara jika tidak ada filter yang dipilih
-    return true;
-  });
+
+
+  // tampilkan modals konfirmasi sebelum menghapus event
+  const handleDeleteConfirmation = (eventId, eventTitle) => {
+   Swal.fire({
+     title: `Apakah anda yakin akan menghapus event "${eventTitle}"?`, // Judul modals konfirmasi dengan nama event
+     text: "Anda tidak akan dapat mengembalikan ini!",
+     icon: "warning",
+     showCancelButton: true,
+     confirmButtonColor: "#d33",
+     cancelButtonColor: "#3085d6",
+     confirmButtonText: "Ya, hapus!",
+   }).then((result) => {
+     if (result.isConfirmed) {
+       // Jika konfirmasi di-setujui, panggil fungsi handleDeleteEvent
+       handleDeleteEvent(eventId);
+       Swal.fire("Terhapus!", "Event anda telah terhapus.", "success");
+     }
+   });
+ };
 
   return (
     <TableContainer>
@@ -77,18 +82,6 @@ const ListEvent = () => {
         value={searchQuery}
         onChange={handleSearchChange}
       />
-      <TextField
-        select
-        label="Filter"
-        variant="outlined"
-        fullWidth
-        margin="normal"
-        value={filterValue}
-        onChange={handleFilterChange}
-      >
-        <MenuItem value="">All</MenuItem>
-        <MenuItem value="liked">Liked</MenuItem>
-      </TextField>
       <Table>
         <TableHead>
           <TableRow>
@@ -104,7 +97,7 @@ const ListEvent = () => {
         </TableHead>
         <TableBody>
          {/* Mengiterasi dan menampilkan daftar acara yang telah difilter dan diurutkan */}
-          {sortedList
+          {filteredList
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map((event, index) => (
               <TableRow key={event.id}>
@@ -139,7 +132,7 @@ const ListEvent = () => {
       <TablePagination
         rowsPerPageOptions={[5, 10, 25]}
         component="div"
-        count={sortedList.length}
+        count={filteredList.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

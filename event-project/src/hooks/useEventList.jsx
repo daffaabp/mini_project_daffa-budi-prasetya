@@ -44,7 +44,20 @@ const useEventList = () => {
     }
   };
 
-  return { eventList, handleLikeClick }; // mengembalikan daftar event dan fungsi handleLikeClick
+  const handleDeleteEvent = async (eventId) => {
+    try {
+      const { error } = await supabase.from('events').delete().eq('id', eventId);
+      if (error) {
+        throw error;
+      }
+      setEventList((prevEventList) => prevEventList.filter((event) => event.id !== eventId));
+    } catch (error) {
+      console.error('Error deleting event:', error.message);
+    }
+  };
+
+
+  return { eventList, handleLikeClick, handleDeleteEvent }; // mengembalikan daftar event dan fungsi handleLikeClick
 };
 
 export default useEventList;
