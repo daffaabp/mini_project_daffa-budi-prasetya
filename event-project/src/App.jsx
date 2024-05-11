@@ -9,6 +9,7 @@ import Dashboard from "./pages/PrivatePages/Dashboard";
 import AddEventPage from "./pages/PrivatePages/AddEventPage";
 import ChatAiPage from "./pages/PrivatePages/ChatAiPage";
 import LoginPageFix from "./pages/LoginPageFix";
+import ListEventPage from "./pages/PrivatePages/ListEventPage";
 function App() {
   return (
     // <Router>
@@ -34,8 +35,8 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<LoginPageFix />} />
           <Route path="/add-event" element={<AddEventPage />} />
-          {/* <Route path="/list-event" element={<ListEventPage />} />
-          <Route path="/like-event" element={<LikeEventPage />} /> */}
+          <Route path="/list-event" element={<ListEventPage />} />
+          {/* <Route path="/like-event" element={<LikeEventPage />} /> */}
           <Route path="/chat-cs" element={<ChatAiPage />} />
         </Routes>
       </Layout>

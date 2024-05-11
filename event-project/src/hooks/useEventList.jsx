@@ -1,0 +1,50 @@
+import { useState, useEffect } from 'react';
+import { supabase } from '../createClient';
+
+const useEventList = () => {
+  const [eventList, setEventList] = useState([]); // state buat nyimpen daftar event
+
+  // useEffect untuk menjalankan fetchEventList saat komponen pertama kali dirender
+  useEffect(() => { 
+    fetchEventList();
+  }, []);
+
+  const fetchEventList = async () => {
+    try {
+      const { data, error } = await supabase.from('events').select('*');
+      if (error) {
+        throw error;
+      }
+      setEventList(data);
+    } catch (error) {
+      console.error('Error fetching events:', error.message);
+    }
+  };
+
+  const handleLikeClick = async (eventId, currentLike) => {
+    try {
+      // Mengubah nilai like
+      const { data, error } = await supabase // memanggil API Supabase untuk meng update nilai "like"
+        .from("events")
+        .update({ like: !currentLike }) // mengubah nilai "like" dari false ke true atau sebaliknya
+        .eq("id", eventId); // filter berdasarkan id event
+      if (error) {
+        throw error; // jika terjadi error, lempar error
+      }
+      console.log("Update like success:", data);
+
+      // update nilai like dalam state lokal
+      setEventList((prevEventList) =>
+        prevEventList.map((event) =>
+          event.id === eventId ? { ...event, like: !currentLike } : event
+        )
+      );
+    } catch (error) {
+      console.error("Update like error:", error.message);
+    }
+  };
+
+  return { eventList, handleLikeClick }; // mengembalikan daftar event dan fungsi handleLikeClick
+};
+
+export default useEventList;
