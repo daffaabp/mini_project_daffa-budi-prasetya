@@ -7,7 +7,7 @@ function ChatBubble({ content, position }) {
       <div className="chat-bubble bg-slate-500 text-white">
         <p style={{ wordWrap: "break-word", whiteSpace: "pre-wrap" }}>
           {content}
-        </p> // Mengatur teks chat dalam bubble dengan pengaturan pemutusan kata dan pemeliharaan spasi
+        </p>
       </div>
     </div>
   );
