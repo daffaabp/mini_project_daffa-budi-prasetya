@@ -1,7 +1,7 @@
 import React from "react";
 import GoogleLoginButton from "../components/login/GoogleLoginButton";
 import { Link } from "react-router-dom";
-import RegisterForm from "../components/register/RegisterForm";
+import RegisterForm from "../../components/register/RegisterForm";
 
 const RegisterPage = () => {
   return (
