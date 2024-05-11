@@ -1,6 +1,5 @@
 import React from "react";
 import LoginForm from "../../components/login/LoginForm";
-import GoogleLoginButton from "../components/login/GoogleLoginButton";
 import { Link } from "react-router-dom";
 
 const LoginPageFix = () => {
@@ -24,8 +23,6 @@ const LoginPageFix = () => {
           <LoginForm />
 
           <hr className="my-6 border-gray-300 w-full" />
-
-          {/* <GoogleLoginButton /> */}
 
           <p className="mt-8">
             Need an account?{" "}

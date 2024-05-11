@@ -6,6 +6,7 @@ import AddEventPage from "./pages/PrivatePages/AddEventPage";
 import ChatAiPage from "./pages/PrivatePages/ChatAiPage";
 import LoginPageFix from "./pages/PublicPages/LoginPageFix";
 import ListEventPage from "./pages/PrivatePages/ListEventPage";
+import LikeEventPage from "./pages/PrivatePages/LikeEventPage";
 function App() {
   return (
     <Router>
@@ -14,8 +15,8 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<LoginPageFix />} />
           <Route path="/add-event" element={<AddEventPage />} />
-          <Route path="/list-event" element={<ListEventPage />} />
-          {/* <Route path="/like-event" element={<LikeEventPage />} /> */}
+          <Route path="/list-events" element={<ListEventPage />} />
+          <Route path="/like-events" element={<LikeEventPage />} />
           <Route path="/chat-cs" element={<ChatAiPage />} />
         </Routes>
       </Layout>
