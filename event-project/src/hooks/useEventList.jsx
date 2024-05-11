@@ -56,8 +56,27 @@ const useEventList = () => {
     }
   };
 
+  const handleUpdateEvent = async (eventId, eventData) => {
+    try {
+      const { data, error } = await supabase.from('events').update(eventData).eq('id', eventId);
+      if (error) {
+        throw error;
+      }
+      console.log('Update event success:', data);
 
-  return { eventList, handleLikeClick, handleDeleteEvent }; // mengembalikan daftar event dan fungsi handleLikeClick
+      setEventList((prevEventList) =>
+        prevEventList.map((event) =>
+          event.id === eventId ? { ...event, ...eventData } : event
+        )
+      );
+    } catch (error) {
+      console.error('Update event error:', error.message);
+    }
+  };
+  
+
+
+  return { eventList, handleLikeClick, handleDeleteEvent, handleUpdateEvent }; // mengembalikan daftar event dan fungsi handleLikeClick
 };
 
 export default useEventList;
