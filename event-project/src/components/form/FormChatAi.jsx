@@ -7,24 +7,23 @@ function ChatBubble({ content, position }) {
       <div className="chat-bubble bg-slate-500 text-white">
         <p style={{ wordWrap: "break-word", whiteSpace: "pre-wrap" }}>
           {content}
-        </p>
+        </p> // Mengatur teks chat dalam bubble dengan pengaturan pemutusan kata dan pemeliharaan spasi
       </div>
     </div>
   );
 }
 
 function FormChatAi() {
-  const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
+  const [question, setQuestion] = useState(""); // Mendefinisikan state question dan fungsi setter setQuestion dengan useState, awalnya kosong
   const [chatHistory, setChatHistory] = useState([]); // State untuk menyimpan riwayat percakapan
-  const [generatingAnswer, setGeneratingAnswer] = useState(false);
+  const [generatingAnswer, setGeneratingAnswer] = useState(false); // Mendefinisikan state generatingAnswer dan fungsi setter setGeneratingAnswer untuk menandai apakah jawaban sedang dihasilkan
 
-  async function generateAnswer(e) {
-    setGeneratingAnswer(true);
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+    setGeneratingAnswer(true); // Mengatur generatingAnswer menjadi true untuk menunjukkan bahwa jawaban sedang dihasilkan
+    e.preventDefault(); // Menghentikan perilaku bawaan dari form untuk mengirimkan data ke server
 
     // Menambahkan pesan dari pengguna ke riwayat percakapan
-    setChatHistory((prevChat) => [
+    setChatHistory((prevChat) => [ 
       ...prevChat,
       { content: question, fromUser: true },
     ]);
@@ -46,11 +45,21 @@ function FormChatAi() {
       // Data yang akan dikirimkan sebagai prompt ke API
       const contentData = {
         parts: [
-          { text: `${promptAwal}` },
           {
-            text: "Apa itu aplikasi Event Project: Aplikasi Event Project ini adalah aplikasi yang akan membantu anda untuk mengelola event.\nLangkah penggunaan: Langkah-langkah untuk menggunakan aplikasi ini yaitu pertama: pengguna harus login terlebih dahulu dan lalu pengguna bisa menambahkan event.\nFitur-fitur: Fitur-fitur dari aplikasi ini adalah seperti tambah event, edit, dan hapus, serta bisa menampilkan event dalam bentuk tampilan kalender, serta bisa berkomunikasi dengan customer service dengan AI.",
+            text: `${promptAwal} + layanan yang akan kamu beri tahu  : {
+              'Apa itu aplikasi Event Project': 'Aplikasi Event Project ini adalah aplikasi yang akan membantu anda untuk mengelola event',
+            }, {
+              'Bagaimana menggunakan aplikasi ini': 'Langkah langkah untuk menggunakan aplikasi ini yaitu pertama : pengguna harus login terlebih dahulu dan lalu pengguna bisa menambahkan event ',
+            }, {
+              'Fitur fitur': 'Fitur fitur dari aplikasi ini adalah seperti tambah event, edit, dan hapus, serta bisa menampilkan event dalam bentuk tampilan calendar, serta bisa berkomunikasi dengan customer servise dengan AI,
+            }, 
+            {
+              'Apa saja teknologi yang digunakan': 'Teknologi yang digunakan dalam aplikasi ini adalah React JS, Taiwind CSS, dan Supabase.
+            }, {
+              'Oke terimakasih': 'Sama sama, senang dapat membantu anda
+            } + pertanyaan dari user`,
           },
-          { text: question }, // Menambahkan pertanyaan pengguna
+          { text: question },
         ],
       };
 
@@ -76,15 +85,13 @@ function FormChatAi() {
         { content: aiAnswer, fromUser: false },
       ]);
 
-      setAnswer(aiAnswer);
     } catch (error) {
       console.log(error);
-      setAnswer("Maaf - Terjadi kesalahan. Silakan coba lagi!");
     }
 
     setQuestion("");
     setGeneratingAnswer(false);
-  }
+  };
 
   return (
     <>
@@ -103,7 +110,7 @@ function FormChatAi() {
           ))}
         </div>
         <form
-          onSubmit={generateAnswer}
+          onSubmit={handleSubmit}
           className="w-4/5 mx-auto text-center rounded bg-gray-50 py-2"
         >
           <textarea
