@@ -12,8 +12,8 @@ function App() {
     <Router>
       <Layout>
         <Routes>
-          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<LoginPageFix />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/add-event" element={<AddEventPage />} />
           <Route path="/list-events" element={<ListEventPage />} />
           <Route path="/like-events" element={<LikeEventPage />} />
