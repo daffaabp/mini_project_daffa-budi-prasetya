@@ -1,8 +1,14 @@
 import React from "react";
 import LoginForm from "../../components/login/LoginForm";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const LoginPageFix = () => {
+  const navigate = useNavigate();
+
+  const handleLoginSuccess = () => {
+    // Redirect ke halamann dashboard jika login sukses
+    navigate("/dashboard");
+  };
 
   return (
     <section className="flex flex-col md:flex-row h-screen items-center">
@@ -21,19 +27,12 @@ const LoginPageFix = () => {
             Log in to your account
           </h1>
 
-          <LoginForm />
+          <LoginForm onLoginSuccess={handleLoginSuccess} />
 
           <hr className="my-6 border-gray-300 w-full" />
 
-          <p className="mt-8">
-            Need an account?{" "}
-            <Link to="/register" className="text-blue-500 hover:text-blue-700 font-semibold">
-              Create an account
-            </Link>
-          </p>
-
           <p className="text-sm text-gray-500 mt-12">
-            &copy; 2024 Talwind - All Rights Reserved.
+            &copy; 2024 Created by Daffa Budi Prasetya.
           </p>
         </div>
       </div>
