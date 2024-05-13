@@ -14,7 +14,7 @@ const LoginPageFix = () => {
     <section className="flex flex-col md:flex-row h-screen items-center">
       <div className="bg-blue-600 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
         <img
-          src="../../public/event1.jpg"
+          src="../../../public/event1.jpg"
           alt=""
           className="w-full h-full object-cover"
         />
