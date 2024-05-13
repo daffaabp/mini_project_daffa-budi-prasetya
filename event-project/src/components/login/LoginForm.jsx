@@ -7,11 +7,11 @@ const LoginForm = ({ onLoginSuccess  }) => {
  
    function handleLogin(e) {
      e.preventDefault();
-     const dummyUser = { username: "muchson", password: "muchson1234" };
+     const dummyUser = { username: "daffaabp", password: "daffa123" };
      if (username === dummyUser.username && password === dummyUser.password) {
        localStorage.setItem("user", JSON.stringify(dummyUser));
        localStorage.setItem("isLoggedIn", true);
-       // Call onLoginSuccess function after successful login
+       // panggil fungsi loginSuccess
        onLoginSuccess();
      } else {
        setErrorMessage("Username or password is incorrect");
