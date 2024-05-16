@@ -7,7 +7,7 @@ const LoginForm = ({ onLoginSuccess  }) => {
  
    function handleLogin(e) {
      e.preventDefault();
-     const dummyUser = { username: "daffaabp", password: "daffa123" };
+     const dummyUser = { username: "admin123", password: "admin123" };
      if (username === dummyUser.username && password === dummyUser.password) {
        localStorage.setItem("user", JSON.stringify(dummyUser));
        localStorage.setItem("isLoggedIn", true);
